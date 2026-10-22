@@ -1,5 +1,5 @@
 """
-Free streaming chatbot using Groq (Llama 3.3 70B).
+Free streaming chatbot using Groq with a configurable model.
 Get your free API key at: https://console.groq.com
 """
 
@@ -12,7 +12,7 @@ SYSTEM_PROMPT = "You are a helpful assistant. Be concise and clear."
 
 def chat(history: list[dict]) -> str:
     stream = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model=os.environ.get("GROQ_MODEL", "openai/gpt-oss-20b"),
         messages=[{"role": "system", "content": SYSTEM_PROMPT}] + history,
         stream=True,
     )
@@ -26,7 +26,7 @@ def chat(history: list[dict]) -> str:
 
 
 def main():
-    print("🤖 Free AI Chatbot (Groq + Llama 3.3 70B)")
+    print("🤖 AI Chatbot (Groq)")
     print("   Type 'exit' to quit\n")
 
     history = []

@@ -1,48 +1,16 @@
-# Which Free LLM API Should You Use?
+# Pick an LLM API without guessing the quota
 
-Use this decision tree to pick the right API for your use case.
+| Need | Shortlist | Check before choosing |
+|---|---|---|
+| Streaming chatbot | Groq | Model availability, daily requests AND token limits |
+| Text + vision | Gemini via Google AI Studio | Which models have free access, region, data-use terms |
+| Compare free models | OpenRouter | Daily free allowance, provider privacy and model rotation |
+| Edge application | Cloudflare Workers AI | Neuron allocation; some models require payment |
+| Experiment with Mistral | Mistral Studio | Account-specific free-model access and quotas |
+| No cloud inference | Ollama + a downloaded local model | RAM, model license, offline configuration |
 
-## Decision Tree
+Use [the catalog](../README.md#directory) for dated official sources, or [filter LLM APIs](https://abbosaliboev.github.io/free-ai-bible/catalog.html?category=llm&reviewed=1).
 
-```
-Do you need the fastest possible inference?
-├── YES → Use Groq (Llama 3.3 70B, 14,400 req/day)
-│         https://console.groq.com
-│
-└── NO → Do you need a huge context window (>100K tokens)?
-         ├── YES → Use Google Gemini Flash (1M context, free)
-         │         https://aistudio.google.com
-         │
-         └── NO → Do you need multimodal (images + text)?
-                  ├── YES → Use Google Gemini Flash
-                  │
-                  └── NO → Do you need the best open-source model?
-                           ├── YES → Use Together AI ($5 free credit, 50+ models)
-                           │         https://together.ai
-                           │
-                           └── NO → Are you in Europe (GDPR)?
-                                    ├── YES → Use Mistral AI
-                                    │         https://mistral.ai
-                                    │
-                                    └── NO → Use OpenRouter (aggregates all)
-                                             https://openrouter.ai
-```
+No universal “fastest” or “best” ranking is claimed. Benchmark your own prompt, output length, concurrency and language. Free tiers are useful for experiments; production capacity and support need separate planning.
 
-## Side-by-Side Comparison
-
-| Criteria | Groq | Gemini Flash | Mistral | Together AI | OpenRouter |
-|----------|------|-------------|---------|-------------|------------|
-| Speed | ⚡⚡⚡ | ⚡⚡ | ⚡⚡ | ⚡⚡ | ⚡⚡ |
-| Free Limit | 14,400/day | 1,500/day | 500M tok/mo | $5 credit | Varies |
-| Context | 128K | 1M | 32K | Varies | Varies |
-| Multimodal | ❌ | ✅ | ❌ | Some | Some |
-| No CC | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Best For | Speed | Long docs | Privacy | Variety | Flexibility |
-
-## My Recommendation
-
-**Default choice for most projects:** Groq with Llama 3.3 70B
-
-It's the fastest, has generous limits, needs no credit card, and the model quality
-is competitive with GPT-4o for most tasks. Use Gemini Flash when you need vision
-or very long context windows.
+Hugging Face Inference Providers currently requires purchased credits or a subscription for free-account users. Downloading open models from the Hub is a different service.

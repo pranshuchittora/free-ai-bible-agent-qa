@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+output.png
+out.png
+*.wav
+.DS_Store
+_site/
+.jekyll-cache/
+link-report.json

@@ -1,6 +1,6 @@
 """
 Free voice assistant: Whisper (STT) + Groq LLM + pyttsx3 (TTS).
-Entirely free. Runs locally for STT and TTS. Groq for LLM (14,400 req/day free).
+Entirely free. Runs locally for STT and TTS. Groq for LLM (model-specific free-tier limits).
 
 Prerequisites:
   - pip install -r requirements.txt
@@ -9,18 +9,16 @@ Prerequisites:
 """
 
 import os
-import tempfile
 import whisper
 import pyttsx3
 import sounddevice as sd
-import soundfile as sf
 import numpy as np
 from groq import Groq
 
 SAMPLE_RATE = 16000
 RECORD_SECONDS = 5
 WHISPER_MODEL = "base"
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-20b")
 
 groq_client = Groq(api_key=os.environ["GROQ_API_KEY"])
 stt_model = whisper.load_model(WHISPER_MODEL)
@@ -42,9 +40,8 @@ def record_audio() -> np.ndarray:
 
 
 def transcribe(audio: np.ndarray) -> str:
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
-        sf.write(f.name, audio, SAMPLE_RATE)
-        result = stt_model.transcribe(f.name)
+    # Whisper accepts a float32 waveform directly; no recordings are left on disk.
+    result = stt_model.transcribe(audio)
     return result["text"].strip()
 
 
@@ -66,7 +63,7 @@ def speak(text: str) -> None:
 
 def main():
     print("🤖 Free Voice Assistant")
-    print("   Whisper (STT) + Groq Llama 70B (LLM) + pyttsx3 (TTS)")
+    print("   Whisper (STT) + Groq (LLM) + pyttsx3 (TTS)")
     print("   Press Ctrl+C to quit\n")
 
     while True:

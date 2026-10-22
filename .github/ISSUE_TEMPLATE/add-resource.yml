@@ -1,0 +1,42 @@
+name: Add an AI resource
+description: Suggest a useful tool with a clear free-access explanation.
+title: 'Add: '
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Resource name
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official pricing, documentation or repository URL
+    validations:
+      required: true
+  - type: dropdown
+    id: access
+    attributes:
+      label: What is free?
+      options:
+        - Recurring hosted free tier
+        - Local or self-hosted software / weights
+        - One-time credit
+        - Time-limited trial
+        - Unsure — help review
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Useful for, limits and eligibility
+      description: Include card requirement, region, quota, license and optional API costs if known.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What did you personally check?
+      description: Separate reading documentation from account/app testing. Do not include API keys or personal account data.
+    validations:
+      required: true

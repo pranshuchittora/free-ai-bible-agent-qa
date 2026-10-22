@@ -1,64 +1,22 @@
-name: Weekly Update Release
-
+name: Source link availability
 on:
   schedule:
-    # Every Monday at 9:00 AM UTC — peak GitHub browsing time
     - cron: '0 9 * * 1'
-  workflow_dispatch: # allow manual trigger
-
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  release:
+  check-links:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Get week number
-        id: week
-        run: |
-          echo "week=$(date +'%Y-W%V')" >> $GITHUB_OUTPUT
-          echo "date=$(date +'%B %d, %Y')" >> $GITHUB_OUTPUT
-          echo "month=$(date +'%B %Y')" >> $GITHUB_OUTPUT
-
-      - name: Count resources
-        id: count
-        run: |
-          # Count table rows in README (lines starting with | that have http links)
-          COUNT=$(grep -c "https://" README.md || echo "700")
-          echo "count=$COUNT" >> $GITHUB_OUTPUT
-
-      - name: Create Weekly Release
-        uses: softprops/action-gh-release@v2
+      - uses: actions/setup-python@v5
         with:
-          tag_name: "weekly-${{ steps.week.outputs.week }}"
-          name: "📋 Weekly Update — ${{ steps.week.outputs.date }}"
-          body: |
-            ## 🧠 Free AI Bible — Weekly Update
-
-            **${{ steps.week.outputs.month }}** edition of the most comprehensive free AI resource directory.
-
-            ### What's in this release
-            - ✅ All links re-verified for availability
-            - ✅ Free tier limits updated where changed
-            - ✅ New resources added by the community
-            - ✅ Translations updated
-
-            ### Quick Access
-            | Category | Link |
-            |----------|------|
-            | 🔥 Free LLM APIs | [View →](https://github.com/abbosaliboev/free-ai-bible#-free-llm-apis-with-high-limits-no-credit-card-required) |
-            | 🎨 Image Generation | [View →](https://github.com/abbosaliboev/free-ai-bible#-free-ai-image--video-generation-no-credit-card-required) |
-            | 🚀 Free Hosting | [View →](https://github.com/abbosaliboev/free-ai-bible#-free-ai-model-hosting--deployment-platforms) |
-            | 🖥️ Local AI Tools | [View →](https://github.com/abbosaliboev/free-ai-bible#️-free-local-ai-tools-that-replace-paid-subscriptions) |
-
-            ### Did this save you money?
-            ⭐ **Star this repo** — it takes 1 second and helps other developers find it.
-
-            📢 **Share it** — one tweet or post can help hundreds of developers save thousands of dollars.
-
-            ---
-            *Free AI Bible is updated weekly. No affiliate links. No sponsorships. Ever.*
-          draft: false
-          prerelease: false
+          python-version: '3.11'
+      - name: Check source availability (not quota verification)
+        run: python scripts/check-links.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-link-report
+          path: link-report.json
