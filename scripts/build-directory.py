@@ -12,20 +12,64 @@ CATEGORIES = {'llm': 'LLM APIs', 'local': 'Local tools', 'models': 'Open models'
 def render():
     rows = json.loads((ROOT / 'data/resources.json').read_text())
     reviewed = [r for r in rows if r['verification'] == 'docs-reviewed']
-    lines = [f'**{len(rows)} resources · {len(reviewed)} docs reviewed · {len(rows)-len(reviewed)} awaiting review.** Counts are generated from the catalog.', '']
-    for category, title in CATEGORIES.items():
-        group = [r for r in reviewed if r['category'] == category]
-        if not group:
-            continue
-        lines += [f'### {title}', '', '| Resource | Access | Useful for / limitations | Source checked |', '|---|---|---|---|']
+    sections = {
+        'llm': ('llm-apis', '🔥 Free LLM APIs'),
+        'image': ('image-tools', '🎨 Image Generation'),
+        'local': ('local-tools', '🖥️ Run AI on Your Own Machine'),
+        'coding': ('coding-tools', '💻 AI Coding Assistants'),
+        'models': ('open-models', '🧠 Open Models to Explore'),
+        'rag': ('rag-tools', '📦 Embeddings, Documents & RAG'),
+        'audio': ('audio-tools', '🎙️ Speech, Audio & Transcription'),
+        'agents': ('agent-tools', '🤖 Build Agents & Workflows'),
+        'hosting': ('hosting-tools', '🚀 Model Serving & Hosting'),
+    }
+    short = {
+        'Groq': ('Streaming chat & speech APIs', 'Model-specific free limits'),
+        'Google AI Studio': ('Gemini text, vision & prototyping', 'Free on eligible models'),
+        'Mistral AI': ('Experiment with Mistral models', 'Free plan; account limits apply'),
+        'Cerebras': ('Hosted LLM inference', 'Free tier with lower limits'),
+        'Cloudflare Workers AI': ('Run inference at the edge', '10,000 neurons/day on eligible models'),
+        'OpenRouter': ('Try models through one API', '50 free-plan requests/day'),
+        'Ollama': ('Download a model and start chatting', 'Local'),
+        'ComfyUI': ('Build image & video workflows visually', 'Local'),
+        'llama.cpp': ('Run GGUF models on CPU or GPU', 'Local'),
+        'MLX LM': ('Run & fine-tune models on Apple silicon', 'Local · compatible Mac required'),
+        'Unsloth': ('Run & fine-tune supported models', 'Local · hardware varies'),
+        'Aider': ('Pair-program from your terminal', 'Free software; bring a model'),
+        'Continue': ('Code with a configurable AI agent', 'Free software; bring a model'),
+        'Qwen3': ('Multilingual chat & reasoning, including Arabic', 'Local · Apache-2.0 releases'),
+        'EmbeddingGemma': ('Compact multilingual embeddings', 'Local · Gemma terms'),
+        'FLUX.1 schnell': ('Generate images with downloadable weights', 'Local · Apache-2.0 variant'),
+        'Chroma (local)': ('Store & search document embeddings', 'Local'),
+        'Docling': ('Turn documents into AI-ready data', 'Local'),
+        'MarkItDown': ('Convert files to Markdown', 'Local · optional API integrations'),
+        'Qdrant (local)': ('Self-host vector search', 'Local'),
+        'pgvector': ('Add vector search to Postgres', 'Local'),
+        'Sentence Transformers': ('Generate embeddings & rerank results', 'Local · choose a model'),
+        'RAGFlow': ('Build document retrieval workflows', 'Self-hosted · needs server resources'),
+        'Qdrant Cloud': ('Managed vector search', 'Free cluster: 1 GB RAM / 4 GB disk'),
+        'whisper.cpp': ('Transcribe speech with a C/C++ runtime', 'Local'),
+        'faster-whisper': ('Run Whisper with CTranslate2', 'Local'),
+        'Qwen3-ASR': ('Recognize multilingual speech, including Arabic', 'Local'),
+        'Qwen3-TTS': ('Generate speech & design voices', 'Local · check language support'),
+        'LiteLLM': ('Connect model providers through one gateway', 'Self-hosted core; model calls separate'),
+        'Flowise': ('Build AI workflows with a visual editor', 'Self-hosted core; model calls separate'),
+        'Dify': ('Create agents & RAG applications', 'Self-hosted · Dify license applies'),
+        'smolagents': ('Build lightweight model-powered agents', 'Free framework; bring a model'),
+        'vLLM': ('Serve supported LLMs yourself', 'Free software; server costs apply'),
+    }
+    lines = [f'**{len(rows)} resources to explore.** Search, filter and save your favorites in the [interactive directory](https://abbosaliboev.github.io/free-ai-bible/catalog.html).', '']
+    for category, (anchor, title) in sections.items():
+        group = [r for r in reviewed if r['category'] == category and r['kind'] != 'paid']
+        lines += [f'<a id="{anchor}"></a>', '', f'### {title}', '', '| Tool | What you can do | Free access |', '|---|---|---|']
         for r in group:
-            desc = (r['summary'] + ' ' + r['limits']).replace('|', '\\|').replace('\n', ' ')
-            lines.append(f"| [{r['name']}]({r['url']}) | {r['kind']} · card: {r['card']} | {desc} | [Official source]({r['source']}) · {r['reviewed']} |")
+            summary, access = short.get(r['name'], (r['summary'], r['kind']))
+            lines.append(f"| [**{r['name']}**]({r['url']}) | {summary} | {access} |")
+        pending = [r for r in rows if r['category'] == category and r['verification'] != 'docs-reviewed']
+        if pending:
+            names = ' · '.join(f"[{r['name']}]({r['url']})" for r in pending)
+            lines += ['', '<details>', '<summary>🔎 More tools to explore — current free access needs a fresh check</summary>', '', names, '', 'Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)', '', '</details>']
         lines.append('')
-    pending = [r for r in rows if r['verification'] != 'docs-reviewed']
-    lines += ['<details>', '<summary>Earlier entries awaiting a fresh review</summary>', '', 'These are candidates, not confirmed free recommendations. Help check one against its current official terms.', '', '| Resource | Category | Status |', '|---|---|---|']
-    lines += [f"| [{r['name']}]({r['url']}) | {CATEGORIES[r['category']]} | Needs review |" for r in pending]
-    lines += ['', '</details>']
     readme = (ROOT / 'README.md').read_text()
     start, rest = readme.split('<!-- CATALOG:START -->')
     _, end = rest.split('<!-- CATALOG:END -->')

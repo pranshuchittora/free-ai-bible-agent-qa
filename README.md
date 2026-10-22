@@ -1,218 +1,325 @@
 <div align="center">
 
-# 🧠 Free AI Bible
-### Build more. Spend less. Find your next AI stack.
+```
+███████╗██████╗ ███████╗███████╗     █████╗ ██╗
+██╔════╝██╔══██╗██╔════╝██╔════╝    ██╔══██╗██║
+█████╗  ██████╔╝█████╗  █████╗      ███████║██║
+██╔══╝  ██╔══██╗██╔══╝  ██╔══╝      ██╔══██║██║
+██║     ██║  ██║███████╗███████╗    ██║  ██║██║
+╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝    ╚═╝  ╚═╝╚═╝
+```
 
-**Free AI APIs, local models, coding agents and practical starters — with the catches made visible.**
+# 🧠 Free AI Bible 2026
+### Free AI APIs, Tools & Local Models for Developers
+
+**Your next AI project might need fewer subscriptions than you think.**
+
+Discover free LLM APIs, generate images, run models offline, and build with ready-to-use starters.
 
 [![Stars](https://img.shields.io/github/stars/abbosaliboev/free-ai-bible?style=for-the-badge&color=yellow)](https://github.com/abbosaliboev/free-ai-bible/stargazers)
-[![Checks](https://github.com/abbosaliboev/free-ai-bible/actions/workflows/checks.yml/badge.svg)](https://github.com/abbosaliboev/free-ai-bible/actions/workflows/checks.yml)
-[![MIT](https://img.shields.io/badge/Directory-MIT-blue)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-blue?style=for-the-badge)](CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)](LICENSE)
 
-[**🔎 Search & filter the directory**](https://abbosaliboev.github.io/free-ai-bible/catalog.html) · [**⚡ Pick a stack**](#pick-your-stack) · [**🤝 Make your first contribution**](CONTRIBUTING.md)
+**[🔎 Explore the searchable directory](https://abbosaliboev.github.io/free-ai-bible/catalog.html)** · **[⚡ Quick start](#quick-start)** · **[🤝 Contribute](#contributing)**
 
-**Save your next weekend of research. ⭐ Star this repo to find it when you need it.**
-
-English · [العربية](translations/README.ar.md) · [中文](translations/README.zh-CN.md) · [한국어](translations/README.ko.md) · [Español](translations/README.es.md) · [Русский](translations/README.ru.md) · [日本語](translations/README.ja.md) · [O‘zbek](translations/README.uz.md)
+🌐 [العربية](translations/README.ar.md) | [中文](translations/README.zh-CN.md) | [한국어](translations/README.ko.md) | [Español](translations/README.es.md) | [Русский](translations/README.ru.md) | [日本語](translations/README.ja.md) | [O‘zbek](translations/README.uz.md)
 
 </div>
 
-## Pick your stack
+---
 
-| I want to… | Start here | What to know |
+> 💛 **Keep this toolbox within reach.** If it saves you time, give it a ⭐ and share it with one developer who needs it.
+
+## 🤔 Why does this repo exist?
+
+A chatbot. A document search tool. A voice assistant. Your next side project.
+
+You can start building all of these with free-tier APIs and local AI tools. The hard part is finding the right combination without spending your weekend comparing pricing pages.
+
+**That's what this repo is for:** discover your options, pick a stack, and get to the code.
+
+No affiliate links. No paid placement. Open to everyone.
+
+## 📋 Jump straight to what you need
+
+| | | |
 |---|---|---|
-| Build a cloud chatbot | [Groq starter](templates/chatbot-groq/) · [API picker](comparison-charts/which-llm-api.md) | Account required; requests and tokens have separate limits |
-| Chat offline | [Ollama setup](scripts/setup-ollama.sh) | Download a local model first; RAM and electricity matter |
-| Search my documents | [Local RAG starter](templates/rag-pipeline-free/) | Ollama + local embeddings + Chroma |
-| Generate images | [Image API starter](templates/image-gen-api/) · [Image picker](comparison-charts/image-gen-picker.md) | First run downloads weights; GPU helps |
-| Build a voice assistant | [Voice starter](templates/voice-assistant/) | Local speech recognition and TTS; text goes to Groq |
-| Code with local models | Continue or Aider in the catalog below | Free assistant software does not make a paid model API free |
-| Work in Arabic | [Arabic guide](translations/README.ar.md) | Qwen3 for text; Qwen3-ASR for speech; test your dialect |
+| [🔥 LLM APIs](#llm-apis) | [🎨 Image generation](#image-tools) | [🖥️ Local AI](#local-tools) |
+| [💻 Coding assistants](#coding-tools) | [📦 Embeddings & RAG](#rag-tools) | [🎙️ Speech & audio](#audio-tools) |
+| [🧠 Open models](#open-models) | [🤖 Agents & workflows](#agent-tools) | [🚀 Model serving](#hosting-tools) |
 
-## What changed
+<a id="pick-your-stack"></a>
 
-**October 22, 2026:** added 24 resources, including Qwen3, Qwen3-ASR/TTS, EmbeddingGemma, Docling, local coding tools and agent frameworks. Added Arabic, a searchable directory, JSON/CSV exports and clearer review labels. [Changelog](CHANGELOG.md).
+## ⚡ What are you building?
 
-**Important correction:** Hugging Face Inference Providers currently lists **no monthly credits for free accounts**. Groq quotas are model-specific, and Cloudflare's free compute allocation excludes some models. Check the linked official sources before building around a quota.
+| Your next project | Start with | Ready-to-run example |
+|---|---|---|
+| 💬 Streaming chatbot | Groq + Python | [Chatbot starter →](templates/chatbot-groq/) |
+| 📄 Chat with your documents | Ollama + Chroma | [Local RAG starter →](templates/rag-pipeline-free/) |
+| 🎨 Image generation API | Stable Diffusion + FastAPI | [Image API starter →](templates/image-gen-api/) |
+| 🎙️ Voice assistant | Whisper + Groq + pyttsx3 | [Voice starter →](templates/voice-assistant/) |
+| 🦙 Offline chat | Ollama + Qwen3 | [Local setup →](scripts/setup-ollama.sh) |
 
-## Read the labels before choosing
+**Can't decide?** [Choose an LLM API](comparison-charts/which-llm-api.md) · [Pick an image workflow](comparison-charts/image-gen-picker.md) · [Local vs cloud](comparison-charts/local-vs-cloud.md)
 
-- **Free tier:** recurring hosted allowance, with account, region and usage restrictions.
-- **Local:** downloadable software or weights. Your hardware, electricity, hosting and model licenses still matter. Optional cloud integrations may charge.
-- **Needs review:** preserved from the earlier directory; the old free quota has been removed until someone checks current terms.
-- **Paid:** a previously listed free option whose current terms no longer qualify; retained to explain the change.
+<a id="directory"></a>
 
-**Docs reviewed** means an official documentation or project page was reviewed on the recorded date. It does **not** mean signup, billing, performance or every model was tested. Card requirements marked “unknown” need account-level confirmation. [Review policy](docs/VERIFICATION.md).
+## 🧰 The toolbox
 
-## Directory
-
-Search by task, category, cost type and card requirement on the [directory page](https://abbosaliboev.github.io/free-ai-bible/catalog.html). Bookmark a filtered URL, save favorites on your device, or download [JSON](data/resources.json) / [CSV](data/resources.csv).
+**☁️ Free tier** = hosted service with usage limits. **🖥️ Local** = run it yourself using your own hardware. Full limits, licenses and dated sources are in the [searchable directory](https://abbosaliboev.github.io/free-ai-bible/catalog.html).
 
 <!-- CATALOG:START -->
-**72 resources · 34 docs reviewed · 38 awaiting review.** Counts are generated from the catalog.
+**72 resources to explore.** Search, filter and save your favorites in the [interactive directory](https://abbosaliboev.github.io/free-ai-bible/catalog.html).
 
-### LLM APIs
+<a id="llm-apis"></a>
 
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [Groq](https://console.groq.com) | free-tier · card: no | Hosted LLM and speech APIs; gpt-oss models are listed in the current free plan. Model-specific request AND token limits; read the console before sizing a workload. | [Official source](https://console.groq.com/docs/rate-limits) · 2026-10-22 |
-| [Google AI Studio](https://aistudio.google.com) | free-tier · card: no | Gemini text and multimodal prototyping on eligible free-tier models. Model, region and project quotas vary. Free-tier content may improve Google products. | [Official source](https://ai.google.dev/gemini-api/docs/pricing) · 2026-10-22 |
-| [Mistral AI](https://mistral.ai) | free-tier · card: unknown | Mistral Studio Free access for experimentation; inspect available models in your account. Account and model limits apply; free access is not a production capacity promise. | [Official source](https://mistral.ai/pricing/) · 2026-10-22 |
-| [Cerebras](https://cerebras.ai) | free-tier · card: unknown | Hosted inference with a documented free tier. Lower free-tier rate limits; consult current model and context availability. | [Official source](https://inference-docs.cerebras.ai/support/pricing) · 2026-10-22 |
-| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai) | free-tier · card: conditional | Edge inference with a daily free compute allocation on supported models. 10,000 neurons/day; some models require a paid plan or prepaid credits. | [Official source](https://developers.cloudflare.com/workers-ai/platform/pricing/) · 2026-10-22 |
-| [Hugging Face Inference](https://huggingface.co/inference-api) | paid · card: conditional | Inference Providers no longer includes monthly credits for free accounts. Free users must buy credits or upgrade; kept here to prevent outdated recommendations. | [Official source](https://huggingface.co/docs/inference-providers/pricing) · 2026-10-22 |
-| [OpenRouter](https://openrouter.ai) | free-tier · card: no | One API for rotating free models; useful for comparing providers. Free plan: 50 requests/day. Model availability and upstream limits vary. | [Official source](https://openrouter.ai/pricing/) · 2026-10-22 |
+### 🔥 Free LLM APIs
 
-### Local tools
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [Ollama](https://ollama.com) | local · card: no | Run supported models locally; choose local model tags for offline use. Hardware, storage and model licenses apply; cloud offerings are separate. | [Official source](https://github.com/ollama/ollama) · 2026-10-22 |
-| [ComfyUI](https://github.com/comfyanonymous/ComfyUI) | local · card: no | Build local image and video workflows with a node editor. Hardware, storage and model licenses apply; cloud offerings are separate. | [Official source](https://github.com/Comfy-Org/ComfyUI) · 2026-10-22 |
-| [llama.cpp](https://github.com/ggml-org/llama.cpp) | local · card: no | Run GGUF models with CPU and supported GPU backends. Software is free to self-host; hardware, hosting and model/API costs may apply. | [Official source](https://github.com/ggml-org/llama.cpp) · 2026-10-22 |
-| [MLX LM](https://github.com/ml-explore/mlx-lm) | local · card: no | Local inference and fine-tuning on Apple silicon. Requires compatible Apple hardware and sufficient memory. | [Official source](https://github.com/ml-explore/mlx-lm) · 2026-10-22 |
-| [Unsloth](https://github.com/unslothai/unsloth) | local · card: no | Tools for running and fine-tuning supported open models. Hardware requirements and licenses vary by model. | [Official source](https://github.com/unslothai/unsloth) · 2026-10-22 |
-
-### Open models
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [Qwen3](https://github.com/QwenLM/Qwen3) | local · card: no | Open-weight multilingual reasoning models; includes Arabic and regional dialects. Apache-2.0 Qwen3 releases; choose a size your hardware supports. | [Official source](https://github.com/QwenLM/Qwen3) · 2026-10-22 |
-| [EmbeddingGemma](https://deepmind.google/models/gemma/embeddinggemma/) | local · card: no | Compact multilingual embedding model for on-device retrieval. Gemma terms and model download conditions apply; local compute required. | [Official source](https://deepmind.google/models/gemma/embeddinggemma/) · 2026-10-22 |
-
-### Coding assistants
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [Aider](https://aider.chat/docs/faq.html) | local · card: no | Terminal coding assistant that works with your Git repository. Assistant software is open source; chosen local models or API providers have their own costs. | [Official source](https://aider.chat/docs/faq.html) · 2026-10-22 |
-| [Continue](https://github.com/continuedev/continue) | local · card: no | Open-source coding agent with configurable model providers. Use local inference for local-only operation; hosted plans and API calls are separate. | [Official source](https://github.com/continuedev/continue) · 2026-10-22 |
-
-### Image & video
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [FLUX.1 schnell](https://github.com/black-forest-labs/flux/blob/main/README.md) | local · card: no | Downloadable text-to-image model for local workflows. The schnell variant uses Apache-2.0; other FLUX variants have different licenses. | [Official source](https://github.com/black-forest-labs/flux/blob/main/README.md) · 2026-10-22 |
-
-### Hosting
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [vLLM](https://github.com/vllm-project/vllm) | local · card: no | Self-host an inference server for supported models. GPU/server costs and model compatibility apply. | [Official source](https://github.com/vllm-project/vllm) · 2026-10-22 |
-
-### Embeddings & RAG
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [Chroma (local)](https://trychroma.com) | local · card: no | Local vector storage for document search and RAG. Hardware, storage and model licenses apply; cloud offerings are separate. | [Official source](https://github.com/chroma-core/chroma) · 2026-10-22 |
-| [Docling](https://github.com/docling-project/docling) | local · card: no | Convert documents into structured data for retrieval pipelines. Software is free to self-host; hardware, hosting and model/API costs may apply. | [Official source](https://github.com/docling-project/docling) · 2026-10-22 |
-| [MarkItDown](https://github.com/microsoft/markitdown) | local · card: no | Convert office documents and other files into Markdown. Optional AI integrations may call paid services; inspect configuration. | [Official source](https://github.com/microsoft/markitdown) · 2026-10-22 |
-| [Qdrant (local)](https://github.com/qdrant/qdrant) | local · card: no | Self-host vector search for semantic retrieval. Software is free to self-host; hardware, hosting and model/API costs may apply. | [Official source](https://github.com/qdrant/qdrant) · 2026-10-22 |
-| [pgvector](https://github.com/pgvector/pgvector) | local · card: no | Add vector similarity search to your own Postgres database. Software is free to self-host; hardware, hosting and model/API costs may apply. | [Official source](https://github.com/pgvector/pgvector) · 2026-10-22 |
-| [Sentence Transformers](https://github.com/huggingface/sentence-transformers) | local · card: no | Local embeddings and reranking with a choice of model families. Each downloaded model has its own license and hardware requirements. | [Official source](https://github.com/huggingface/sentence-transformers) · 2026-10-22 |
-| [RAGFlow](https://github.com/infiniflow/ragflow) | local · card: no | Self-host document retrieval and agent workflows. Requires substantial local/server resources; selected inference providers may charge. | [Official source](https://github.com/infiniflow/ragflow) · 2026-10-22 |
-| [Qdrant Cloud](https://qdrant.tech/pricing/) | free-tier · card: unknown | Managed vector database with a free cluster option. Free tier: 1 GB RAM and 4 GB disk; check current eligibility and region. | [Official source](https://qdrant.tech/pricing/) · 2026-10-22 |
-
-### Speech & audio
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [whisper.cpp](https://github.com/ggml-org/whisper.cpp) | local · card: no | Local speech recognition in C/C++ with multiple hardware backends. Software is free to self-host; hardware, hosting and model/API costs may apply. | [Official source](https://github.com/ggml-org/whisper.cpp) · 2026-10-22 |
-| [faster-whisper](https://github.com/SYSTRAN/faster-whisper) | local · card: no | Local Whisper inference using CTranslate2. Software is free to self-host; hardware, hosting and model/API costs may apply. | [Official source](https://github.com/SYSTRAN/faster-whisper) · 2026-10-22 |
-| [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR) | local · card: no | Multilingual speech recognition with language detection. Check supported languages and hardware in the model card. | [Official source](https://github.com/QwenLM/Qwen3-ASR) · 2026-10-22 |
-| [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) | local · card: no | Downloadable speech generation and voice design models. Language coverage differs from Qwen3-ASR; use voices with permission. | [Official source](https://github.com/QwenLM/Qwen3-TTS) · 2026-10-22 |
-
-### Agents & workflows
-
-| Resource | Access | Useful for / limitations | Source checked |
-|---|---|---|---|
-| [LiteLLM](https://github.com/BerriAI/litellm) | local · card: no | A common interface and gateway for multiple model providers. Self-hosted core and enterprise features differ; upstream inference may cost money. | [Official source](https://github.com/BerriAI/litellm) · 2026-10-22 |
-| [Flowise](https://github.com/FlowiseAI/Flowise) | local · card: no | Visual builder for AI workflows and agents. Self-hosted core is separate from cloud and enterprise plans; model calls may cost money. | [Official source](https://github.com/FlowiseAI/Flowise) · 2026-10-22 |
-| [Dify](https://github.com/langgenius/dify) | local · card: no | Build self-hosted workflows, agents and retrieval applications. Dify license has additional conditions; cloud and model costs are separate. | [Official source](https://github.com/langgenius/dify) · 2026-10-22 |
-| [smolagents](https://github.com/huggingface/smolagents) | local · card: no | A lightweight framework for building model-powered agents. Model inference is separate; run generated code in an appropriate sandbox. | [Official source](https://github.com/huggingface/smolagents) · 2026-10-22 |
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**Groq**](https://console.groq.com) | Streaming chat & speech APIs | Model-specific free limits |
+| [**Google AI Studio**](https://aistudio.google.com) | Gemini text, vision & prototyping | Free on eligible models |
+| [**Mistral AI**](https://mistral.ai) | Experiment with Mistral models | Free plan; account limits apply |
+| [**Cerebras**](https://cerebras.ai) | Hosted LLM inference | Free tier with lower limits |
+| [**Cloudflare Workers AI**](https://developers.cloudflare.com/workers-ai) | Run inference at the edge | 10,000 neurons/day on eligible models |
+| [**OpenRouter**](https://openrouter.ai) | Try models through one API | 50 free-plan requests/day |
 
 <details>
-<summary>Earlier entries awaiting a fresh review</summary>
+<summary>🔎 More tools to explore — current free access needs a fresh check</summary>
 
-These are candidates, not confirmed free recommendations. Help check one against its current official terms.
+[Cohere](https://cohere.com) · [Together AI](https://together.ai) · [Novita AI](https://novita.ai)
 
-| Resource | Category | Status |
-|---|---|---|
-| [Cohere](https://cohere.com) | LLM APIs | Needs review |
-| [Together AI](https://together.ai) | LLM APIs | Needs review |
-| [Novita AI](https://novita.ai) | LLM APIs | Needs review |
-| [Stable Diffusion (Local)](https://github.com/AUTOMATIC1111/stable-diffusion-webui) | Image & video | Needs review |
-| [Leonardo.ai](https://leonardo.ai) | Image & video | Needs review |
-| [Adobe Firefly](https://firefly.adobe.com) | Image & video | Needs review |
-| [Ideogram](https://ideogram.ai) | Image & video | Needs review |
-| [Flux (via Replicate)](https://replicate.com) | Image & video | Needs review |
-| [Kling AI](https://klingai.com) | Image & video | Needs review |
-| [Hailuo AI](https://hailuoai.com) | Image & video | Needs review |
-| [Craiyon](https://www.craiyon.com) | Image & video | Needs review |
-| [Pika Labs](https://pika.art) | Image & video | Needs review |
-| [Hugging Face Spaces](https://huggingface.co/spaces) | Hosting | Needs review |
-| [Google Colab](https://colab.research.google.com) | Hosting | Needs review |
-| [Modal](https://modal.com) | Hosting | Needs review |
-| [Vercel](https://vercel.com) | Hosting | Needs review |
-| [Railway](https://railway.app) | Hosting | Needs review |
-| [Render](https://render.com) | Hosting | Needs review |
-| [Replicate](https://replicate.com) | Hosting | Needs review |
-| [Cloudflare Workers](https://workers.cloudflare.com) | Hosting | Needs review |
-| [Kaggle Notebooks](https://kaggle.com) | Hosting | Needs review |
-| [LM Studio](https://lmstudio.ai) | Local tools | Needs review |
-| [Whisper (local)](https://github.com/openai/whisper) | Local tools | Needs review |
-| [Anything LLM](https://anythingllm.com) | Local tools | Needs review |
-| [LocalAI](https://localai.io) | Local tools | Needs review |
-| [Jan.ai](https://jan.ai) | Local tools | Needs review |
-| [Open WebUI](https://github.com/open-webui/open-webui) | Local tools | Needs review |
-| [Supabase pgvector](https://supabase.com) | Embeddings & RAG | Needs review |
-| [Pinecone](https://pinecone.io) | Embeddings & RAG | Needs review |
-| [Weaviate Cloud](https://weaviate.io) | Embeddings & RAG | Needs review |
-| [Cohere Embed](https://cohere.com) | Embeddings & RAG | Needs review |
-| [Nomic Embed](https://nomic.ai) | Embeddings & RAG | Needs review |
-| [Deepgram](https://deepgram.com) | Speech & audio | Needs review |
-| [ElevenLabs](https://elevenlabs.io) | Speech & audio | Needs review |
-| [Whisper (OpenAI)](https://openai.com/research/whisper) | Speech & audio | Needs review |
-| [Suno](https://suno.com) | Speech & audio | Needs review |
-| [Udio](https://udio.com) | Speech & audio | Needs review |
-| [AssemblyAI](https://assemblyai.com) | Speech & audio | Needs review |
+Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)
 
 </details>
+
+<a id="image-tools"></a>
+
+### 🎨 Image Generation
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**FLUX.1 schnell**](https://github.com/black-forest-labs/flux/blob/main/README.md) | Generate images with downloadable weights | Local · Apache-2.0 variant |
+
+<details>
+<summary>🔎 More tools to explore — current free access needs a fresh check</summary>
+
+[Stable Diffusion (Local)](https://github.com/AUTOMATIC1111/stable-diffusion-webui) · [Leonardo.ai](https://leonardo.ai) · [Adobe Firefly](https://firefly.adobe.com) · [Ideogram](https://ideogram.ai) · [Flux (via Replicate)](https://replicate.com) · [Kling AI](https://klingai.com) · [Hailuo AI](https://hailuoai.com) · [Craiyon](https://www.craiyon.com) · [Pika Labs](https://pika.art)
+
+Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)
+
+</details>
+
+<a id="local-tools"></a>
+
+### 🖥️ Run AI on Your Own Machine
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**Ollama**](https://ollama.com) | Download a model and start chatting | Local |
+| [**ComfyUI**](https://github.com/comfyanonymous/ComfyUI) | Build image & video workflows visually | Local |
+| [**llama.cpp**](https://github.com/ggml-org/llama.cpp) | Run GGUF models on CPU or GPU | Local |
+| [**MLX LM**](https://github.com/ml-explore/mlx-lm) | Run & fine-tune models on Apple silicon | Local · compatible Mac required |
+| [**Unsloth**](https://github.com/unslothai/unsloth) | Run & fine-tune supported models | Local · hardware varies |
+
+<details>
+<summary>🔎 More tools to explore — current free access needs a fresh check</summary>
+
+[LM Studio](https://lmstudio.ai) · [Whisper (local)](https://github.com/openai/whisper) · [Anything LLM](https://anythingllm.com) · [LocalAI](https://localai.io) · [Jan.ai](https://jan.ai) · [Open WebUI](https://github.com/open-webui/open-webui)
+
+Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)
+
+</details>
+
+<a id="coding-tools"></a>
+
+### 💻 AI Coding Assistants
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**Aider**](https://aider.chat/docs/faq.html) | Pair-program from your terminal | Free software; bring a model |
+| [**Continue**](https://github.com/continuedev/continue) | Code with a configurable AI agent | Free software; bring a model |
+
+<a id="open-models"></a>
+
+### 🧠 Open Models to Explore
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**Qwen3**](https://github.com/QwenLM/Qwen3) | Multilingual chat & reasoning, including Arabic | Local · Apache-2.0 releases |
+| [**EmbeddingGemma**](https://deepmind.google/models/gemma/embeddinggemma/) | Compact multilingual embeddings | Local · Gemma terms |
+
+<a id="rag-tools"></a>
+
+### 📦 Embeddings, Documents & RAG
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**Chroma (local)**](https://trychroma.com) | Store & search document embeddings | Local |
+| [**Docling**](https://github.com/docling-project/docling) | Turn documents into AI-ready data | Local |
+| [**MarkItDown**](https://github.com/microsoft/markitdown) | Convert files to Markdown | Local · optional API integrations |
+| [**Qdrant (local)**](https://github.com/qdrant/qdrant) | Self-host vector search | Local |
+| [**pgvector**](https://github.com/pgvector/pgvector) | Add vector search to Postgres | Local |
+| [**Sentence Transformers**](https://github.com/huggingface/sentence-transformers) | Generate embeddings & rerank results | Local · choose a model |
+| [**RAGFlow**](https://github.com/infiniflow/ragflow) | Build document retrieval workflows | Self-hosted · needs server resources |
+| [**Qdrant Cloud**](https://qdrant.tech/pricing/) | Managed vector search | Free cluster: 1 GB RAM / 4 GB disk |
+
+<details>
+<summary>🔎 More tools to explore — current free access needs a fresh check</summary>
+
+[Supabase pgvector](https://supabase.com) · [Pinecone](https://pinecone.io) · [Weaviate Cloud](https://weaviate.io) · [Cohere Embed](https://cohere.com) · [Nomic Embed](https://nomic.ai)
+
+Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)
+
+</details>
+
+<a id="audio-tools"></a>
+
+### 🎙️ Speech, Audio & Transcription
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**whisper.cpp**](https://github.com/ggml-org/whisper.cpp) | Transcribe speech with a C/C++ runtime | Local |
+| [**faster-whisper**](https://github.com/SYSTRAN/faster-whisper) | Run Whisper with CTranslate2 | Local |
+| [**Qwen3-ASR**](https://github.com/QwenLM/Qwen3-ASR) | Recognize multilingual speech, including Arabic | Local |
+| [**Qwen3-TTS**](https://github.com/QwenLM/Qwen3-TTS) | Generate speech & design voices | Local · check language support |
+
+<details>
+<summary>🔎 More tools to explore — current free access needs a fresh check</summary>
+
+[Deepgram](https://deepgram.com) · [ElevenLabs](https://elevenlabs.io) · [Whisper (OpenAI)](https://openai.com/research/whisper) · [Suno](https://suno.com) · [Udio](https://udio.com) · [AssemblyAI](https://assemblyai.com)
+
+Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)
+
+</details>
+
+<a id="agent-tools"></a>
+
+### 🤖 Build Agents & Workflows
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**LiteLLM**](https://github.com/BerriAI/litellm) | Connect model providers through one gateway | Self-hosted core; model calls separate |
+| [**Flowise**](https://github.com/FlowiseAI/Flowise) | Build AI workflows with a visual editor | Self-hosted core; model calls separate |
+| [**Dify**](https://github.com/langgenius/dify) | Create agents & RAG applications | Self-hosted · Dify license applies |
+| [**smolagents**](https://github.com/huggingface/smolagents) | Build lightweight model-powered agents | Free framework; bring a model |
+
+<a id="hosting-tools"></a>
+
+### 🚀 Model Serving & Hosting
+
+| Tool | What you can do | Free access |
+|---|---|---|
+| [**vLLM**](https://github.com/vllm-project/vllm) | Serve supported LLMs yourself | Free software; server costs apply |
+
+<details>
+<summary>🔎 More tools to explore — current free access needs a fresh check</summary>
+
+[Hugging Face Spaces](https://huggingface.co/spaces) · [Google Colab](https://colab.research.google.com) · [Modal](https://modal.com) · [Vercel](https://vercel.com) · [Railway](https://railway.app) · [Render](https://render.com) · [Replicate](https://replicate.com) · [Cloudflare Workers](https://workers.cloudflare.com) · [Kaggle Notebooks](https://kaggle.com)
+
+Check the current plan before signing up. [Help update an entry →](CONTRIBUTING.md)
+
+</details>
+
 <!-- CATALOG:END -->
 
-## Run your first local model
+---
 
-Install [Ollama for your OS](https://ollama.com/download), then:
+<a id="quick-start"></a>
+
+## ⚡ From browsing to building
+
+### 🦙 Option A — Run an AI model locally
+
+Install [Ollama](https://ollama.com/download) for your OS, then:
 
 ```bash
 ollama pull qwen3:4b
 ollama run qwen3:4b
 ```
 
-Pick a smaller or quantized model if memory is limited. After the download, local model inference can run offline. Cloud-tagged models require a network connection.
+**That's your first local chat.** After downloading the model, local inference can run offline. Choose a model size that fits your memory.
 
-For the Python starters, create a virtual environment in the chosen template folder:
+### 💬 Option B — Build a streaming chatbot
+
+Get a free-tier API key from [Groq](https://console.groq.com), then run from the repo root:
 
 ```bash
+cd templates/chatbot-groq
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+export GROQ_API_KEY=your_key_here
+python app.py
 ```
 
-On Windows use `.venv\Scripts\activate`. Each starter has its own setup instructions; these are learning examples, not production deployments.
+On Windows, activate with `.venv\Scripts\activate` and set `GROQ_API_KEY` using your shell's environment-variable syntax.
 
-## Help one developer. Improve one entry.
+### 📄 Option C — Chat with your own documents
 
-You do not need to build a new feature to contribute. Check one provider's free tier, test one starter, or improve one translation. [Start with a small task](docs/GOOD_FIRST_ISSUES.md).
+Start with the [local RAG template](templates/rag-pipeline-free/): Ollama for answers, a dedicated embedding model, and Chroma for search. Swap the sample text for your own documents.
 
-- [Add a resource](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=add-resource.yml)
-- [Report a changed limit](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=outdated-resource.yml)
-- [Help with a translation](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=translation.yml)
-- [Contribution guide](CONTRIBUTING.md) · [Contributors](https://github.com/abbosaliboev/free-ai-bible/graphs/contributors)
+> 💡 More to build: [image generation API](templates/image-gen-api/) · [voice assistant](templates/voice-assistant/) · [setup scripts](scripts/)
 
-All contributors are credited through Git history and the contributors page. No affiliate links or paid placement. Directory content uses the [MIT license](LICENSE); each listed service and model has its own terms.
+## 🆕 More tools. More ways to build.
 
-## Share a useful discovery
+The October update adds **24 resources**, including Qwen3, Qwen3-ASR/TTS, Continue, Aider, Docling, EmbeddingGemma and more. There's now an **Arabic guide**, plus **search, filters, favorites and CSV/JSON downloads** in the directory.
 
-Found a tool that saved you time? Share that specific entry or starter with your community. [Ready-to-adapt English, Arabic and Uzbek posts](docs/SHARING.md) are included. Maintainers can use the [growth checklist](docs/MAINTAINER_GUIDE.md) to track real usage and contributions.
+[See what's new →](CHANGELOG.md)
 
-**⭐ Keep this toolbox within reach. Star it, try a starter, and bring back one useful correction.**
+<details>
+<summary>📌 A quick note about free tiers and sources</summary>
+
+Free allowances change by model, account and region. Local software still needs hardware and may have optional paid integrations. “Docs reviewed” means the official page was checked on the recorded date, not that every account, model or billing flow was tested.
+
+Hugging Face Inference Providers currently lists no monthly credits for free accounts; downloading models for local use is separate. Groq limits vary by model, and some Cloudflare Workers AI models require payment.
+
+[Official sources and full details](https://abbosaliboev.github.io/free-ai-bible/catalog.html) · [Review policy](docs/VERIFICATION.md) · [JSON](data/resources.json) · [CSV](data/resources.csv)
+
+</details>
+
+---
+
+<a id="contributing"></a>
+
+## 🤝 Make this toolbox better
+
+**Know a useful tool? Found a changed limit? Tried a starter? Bring it back here.**
+
+1. Pick a resource or a [small starter task](docs/GOOD_FIRST_ISSUES.md).
+2. Add a tool, fix a limit, test an example, or improve a translation.
+3. Open a PR with the official source and what you checked.
+
+You don't have to write code to contribute. One useful correction helps the next developer.
+
+[Contribution guide →](CONTRIBUTING.md) · [Suggest a tool](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=add-resource.yml) · [Report an update](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=outdated-resource.yml)
+
+## ⭐ Help another developer discover this
+
+If you found something useful:
+
+- **Star the repo** so you can find it for your next build.
+- **Share a tool or starter** with a friend or your developer community.
+- **Contribute one thing** you wish had been here when you started.
+
+[English, Arabic & Uzbek sharing drafts →](docs/SHARING.md) · [Meet the contributors →](https://github.com/abbosaliboev/free-ai-bible/graphs/contributors)
+
+## 📈 Star history
+
+<a href="https://star-history.com/#abbosaliboev/free-ai-bible&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=abbosaliboev/free-ai-bible&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=abbosaliboev/free-ai-bible&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=abbosaliboev/free-ai-bible&type=Date" />
+  </picture>
+</a>
+
+---
+
+<div align="center">
+
+**Built for developers who would rather ship than compare subscriptions.**
+
+Open source · No affiliate links · No paid placement
+
+</div>
