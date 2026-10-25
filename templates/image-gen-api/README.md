@@ -28,4 +28,6 @@ Visit `http://localhost:8000/docs` for interactive Swagger UI.
 
 - First run downloads the model (~4GB, one-time only)
 - GPU recommended — CPU works but is ~10x slower
-- Swap `runwayml/stable-diffusion-v1-5` for any HuggingFace diffusion model
+- Swap `stable-diffusion-v1-5/stable-diffusion-v1-5` for a compatible StableDiffusionPipeline model (other architectures need their own pipeline)
+
+Requests require a nonempty prompt of at most 2,000 characters, dimensions between 64 and 768 divisible by 8, and 1–50 steps. Generation is serialized per process because the pipeline is shared. This protects the demo from concurrent inference allocations; it is not a production queue or request-rate limiter. Keep the default loopback binding for local use.

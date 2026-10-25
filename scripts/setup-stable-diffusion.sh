@@ -13,7 +13,7 @@ fi
 
 # Install dependencies
 echo "📦 Installing dependencies (this may take a few minutes)..."
-pip install diffusers transformers accelerate torch --quiet
+python3 -m pip install diffusers transformers accelerate torch --quiet
 echo "✅ Dependencies installed"
 
 read -p "Enter your image prompt: " PROMPT
@@ -27,17 +27,19 @@ echo "🖼️ Generating: \"$PROMPT\""
 echo "   (First run downloads the model — ~4GB, one-time only)"
 echo ""
 
-python3 - <<EOF
+export AI_IMAGE_PROMPT="$PROMPT"
+python3 - <<'EOF'
 from diffusers import StableDiffusionPipeline
 import torch
+import os
 
 pipe = StableDiffusionPipeline.from_pretrained(
-    "runwayml/stable-diffusion-v1-5",
+    "stable-diffusion-v1-5/stable-diffusion-v1-5",
     torch_dtype=torch.float32
 )
 
 print("⏳ Generating image...")
-image = pipe("$PROMPT").images[0]
+image = pipe(os.environ["AI_IMAGE_PROMPT"]).images[0]
 image.save("output.png")
 print("")
 print("✅ Image saved to: output.png")

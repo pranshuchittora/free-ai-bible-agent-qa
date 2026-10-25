@@ -1,36 +1,42 @@
 """
 Free RAG pipeline: Ollama (local LLM) + Chroma (local vector DB).
-No API keys. No cloud. 100% private. Runs entirely on your machine.
+No API keys. Uses local models and an in-memory database in this configuration.
 
 Prerequisites:
   - Ollama running: ollama serve
-  - Model pulled: ollama pull llama3.2
+  - Model pulled: ollama pull qwen3:4b
+  - Embedding model: ollama pull nomic-embed-text
   - pip install -r requirements.txt
 """
 
+import uuid
 import chromadb
 from chromadb.utils.embedding_functions import OllamaEmbeddingFunction
 from ollama import Client
 
 OLLAMA_HOST = "http://localhost:11434"
-MODEL = "llama3.2"
+MODEL = "qwen3:4b"
+EMBED_MODEL = "nomic-embed-text"
 COLLECTION_NAME = "my_docs"
 
 ollama = Client(host=OLLAMA_HOST)
 chroma = chromadb.Client()
-embed_fn = OllamaEmbeddingFunction(url=f"{OLLAMA_HOST}/api/embeddings", model_name=MODEL)
+embed_fn = OllamaEmbeddingFunction(url=OLLAMA_HOST, model_name=EMBED_MODEL)
 collection = chroma.get_or_create_collection(COLLECTION_NAME, embedding_function=embed_fn)
 
 
 def add_documents(docs: list[str], ids: list[str] | None = None) -> None:
     if ids is None:
-        ids = [str(i) for i in range(len(docs))]
+        ids = [str(uuid.uuid4()) for _ in docs]
     collection.add(documents=docs, ids=ids)
     print(f"✅ Added {len(docs)} document(s) to the knowledge base.")
 
 
 def query(question: str, n_results: int = 3) -> str:
-    results = collection.query(query_texts=[question], n_results=n_results)
+    count = collection.count()
+    if count == 0:
+        return "I don't know. No documents have been added."
+    results = collection.query(query_texts=[question], n_results=min(max(1, n_results), count))
     context = "\n\n".join(results["documents"][0])
 
     prompt = f"""Answer the question using only the context below.
@@ -52,8 +58,8 @@ Answer:"""
 if __name__ == "__main__":
     # Example: load some documents
     sample_docs = [
-        "Groq offers a free tier with 14,400 requests per day for Llama 3.3 70B.",
-        "Ollama lets you run LLMs locally with a single command: ollama run llama3.2.",
+        "Groq offers a model-specific free tier; check its official rate-limit documentation.",
+        "Ollama lets you run LLMs locally with a single command: ollama run qwen3:4b.",
         "Chroma is an open-source vector database that runs entirely in-memory or on disk.",
         "The free AI Bible is a curated list of free AI tools and APIs for developers.",
     ]

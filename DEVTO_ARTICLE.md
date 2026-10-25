@@ -1,122 +1,49 @@
-# PUBLISH THIS ON DEV.TO — COPY PASTE EXACTLY
-# Go to: https://dev.to/new
-# Title, tags, and body are below
-# Estimated read time: 5 min | Estimated traffic: 500-2000 views in first week
+---
+title: Your next AI side project might need fewer subscriptions
+tags: ai, opensource, webdev, programming
+published: false
 ---
 
-TITLE: I spent 200 hours building the ultimate free AI resource list so you don't have to (2026)
+# Your next AI side project might need fewer subscriptions
 
-TAGS: ai, freetools, opensource, webdev
+Finding a free AI API is easy. Finding out what “free” actually means takes longer.
 
-COVER IMAGE: (leave blank or use a screenshot of the README)
+Does it reset monthly? Is it a one-time credit? Does the model need a paid account even though the platform has a free tier? And will the local tool quietly call a paid API?
 
----
+I'm building [Free AI Bible](https://github.com/abbosaliboev/free-ai-bible) to make those questions easier to answer.
 
-BODY (copy everything below this line):
+## A toolbox you can search
 
----
+The [directory](https://abbosaliboev.github.io/free-ai-bible/catalog.html) lets you filter APIs, local models, coding assistants and retrieval tools by category, access type and card requirements. Save favorites on your device, share a filtered URL or download the JSON/CSV.
 
-I'm going to save you hundreds of hours and potentially thousands of dollars.
+Official documentation reviews have dates. Older entries that need a fresh check are labelled. Reading pricing documentation is different from testing an account; the directory says which it does.
 
-Over the past few months, I've been building something quietly: **a verified, weekly-updated directory of every legitimately free AI tool, API, and service available to developers in 2026.**
+One example of why this matters: Hugging Face Inference Providers now lists no monthly credits for free accounts in its [official pricing documentation](https://huggingface.co/docs/inference-providers/pricing). Downloading models for local use is a different option.
 
-Not "free trial." Not "free with a credit card." Actually free.
+## Four ways to start building
 
-Here's what I found.
+- A streaming chatbot with Groq, with the model configurable through an environment variable.
+- A local RAG example using Ollama, a dedicated embedding model and Chroma.
+- A Stable Diffusion REST wrapper with bounded inputs.
+- A voice assistant with local speech processing and cloud text inference.
 
-## The Dirty Secret About AI Costs
+These are small learning examples. Hardware, licenses, model availability and free quotas still apply.
 
-Big Tech's marketing works. Most developers I talk to assume they *need* to pay $20-$200/month for AI capabilities in their apps. They reach for OpenAI's API, spin up AWS infrastructure, and subscribe to Midjourney.
+## Try a local model
 
-They don't have to.
+Install [Ollama](https://ollama.com/download), then choose a model that fits your hardware:
 
-## What's Actually Free in 2026
-
-### Free LLM APIs (No Credit Card)
-
-| Provider | Model | Free Limit |
-|----------|-------|-----------|
-| Groq | Llama 3.3 70B | 14,400 req/day |
-| Google AI Studio | Gemini 2.0 Flash | 1,500 req/day + 1M context |
-| Mistral | Mistral 7B | 500M tokens/month |
-| Cohere | Command R+ | 1,000 req/month |
-| Together AI | 50+ models | $5 free credit |
-| Cerebras | Llama 3.1 70B | 30 req/min (ultra-fast) |
-
-**Groq alone gives you 14,400 free requests per day.** That's a full production app for most indie projects — completely free.
-
-### Free Image Generation
-
-- **Leonardo.ai** — 150 images/day, photorealistic quality, zero credit card
-- **Stable Diffusion (local)** — unlimited, runs on your laptop
-- **Ideogram** — 10/day, best for text-in-image
-- **Kling AI / Hailuo AI** — video generation, free daily credits
-
-### Free AI Hosting
-
-- **HuggingFace Spaces** — host any Gradio/Streamlit app for free, permanently
-- **Modal** — $30/month free GPU compute (serverless)
-- **Cloudflare Workers AI** — 100K inference requests/day at the edge
-- **Google Colab** — free T4 GPU for notebooks
-
-### Local Tools That Beat Paid Alternatives
-
-- **Ollama** — run Llama, Mistral, Phi locally with one command
-- **Open WebUI** — self-hosted ChatGPT UI, connects to any LLM
-- **Whisper (local)** — transcription that beats paid APIs at $0/month
-- **ComfyUI** — image generation workflow tool, unlimited
-
-## Get Running in 60 Seconds
-
-**Free LLM (cloud):**
 ```bash
-pip install groq
-# Get free key at console.groq.com — no CC
-python -c "
-from groq import Groq
-client = Groq(api_key='YOUR_KEY')
-r = client.chat.completions.create(
-    model='llama-3.3-70b-versatile',
-    messages=[{'role':'user','content':'Hello!'}]
-)
-print(r.choices[0].message.content)
-"
+ollama pull qwen3:4b
+ollama run qwen3:4b
 ```
 
-**Free LLM (local, fully offline):**
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-ollama pull llama3.2
-ollama run llama3.2
-```
+The catalog also includes tools such as Docling, Continue, Aider, whisper.cpp and multilingual model families. Arabic joins the translated guides; native-speaker review is welcome.
 
-## How Much Can You Save?
+## Help with one useful correction
 
-| Use Case | Paid Stack | Free Stack | Annual Savings |
-|----------|-----------|-----------|---------------|
-| LLM API | $150/mo (GPT-4o) | $0 (Groq) | $1,800 |
-| Image gen | $50/mo (Midjourney) | $0 (Leonardo) | $600 |
-| Hosting | $200/mo (AWS) | $0 (HuggingFace) | $2,400 |
-| Transcription | $40/mo | $0 (local Whisper) | $480 |
-| **Total** | **$440/mo** | **$0** | **$5,280/yr** |
+You do not need to build a big feature. Check one service's current terms, test one starter on your OS, or improve one translation. The repo includes issue forms and small suggested tasks.
 
-## The Full List
+[Explore the repo](https://github.com/abbosaliboev/free-ai-bible). ⭐ Star it to keep it within reach for your next build.
 
-I've compiled 700+ of these into an open-source repo that I update every week:
-
-👉 **[github.com/abbosaliboev/free-ai-bible](https://github.com/abbosaliboev/free-ai-bible)**
-
-It includes:
-- Complete tables for every category above
-- One-click setup scripts (run one command, everything configured)
-- Copy-paste app templates: chatbot, RAG pipeline, image generation API, voice assistant
-- Comparison charts: which LLM to use, local vs cloud, image gen picker
-- Translations in 6 languages (Chinese, Korean, Spanish, Russian, Japanese, Uzbek)
-
-Zero affiliate links. Zero sponsored entries. If it's there, I tested it.
-
----
-
-*If this saves you money or time, a ⭐ star on the repo is all I ask. It takes one second and helps other developers find it.*
-
-What free AI tool has surprised you the most? Drop it in the comments — the best ones will make it into the list.
+Which free-tier limitation surprised you recently? A link to the official change can help everyone avoid the same mistake.

@@ -1,33 +1,36 @@
-# Contributing to Free AI Bible
+# Make one AI resource easier to use
 
-Thank you for helping make this the most complete free AI resource list on GitHub.
+A single corrected limit, tested starter or improved translation is a useful contribution. No large PR required. See [small starter tasks](docs/GOOD_FIRST_ISSUES.md).
 
-## Ground Rules
+## Add or update a resource
 
-- **Actually free** — must have a usable free tier with no credit card required (or clearly noted if CC is needed)
-- **Verified** — you must have personally tested the resource
-- **No affiliate links** — ever
-- **No sponsored entries** — ever
+1. Fork the repo and edit **`data/resources.json`**. Copy a nearby entry and use a unique lowercase hyphenated `id`.
+2. Add an official source, a useful summary and the limitations. Follow the [review policy](docs/VERIFICATION.md). Local software qualifies; trials and credits must be labelled honestly. No affiliate links or sponsored placement.
+3. Run:
 
-## How to Add a Resource
+   ```bash
+   python3 scripts/build-directory.py
+   python3 scripts/check-repo.py
+   ```
 
-1. Fork this repository
-2. Add your entry to the correct table in `README.md`
-3. Fill in **every column** — incomplete rows will be rejected
-4. Open a Pull Request with the title: `Add: [Resource Name]`
-5. In the PR description, briefly explain why it belongs and confirm you've tested it
+4. Open a PR using `Add: Name`, `Update: Name` or `Fix: description`. Describe what you changed, link your evidence and say whether you actually tested an account/app. Commit the generated files too.
 
-## How to Report Outdated Info
+Do not edit generated README catalog tables, `data/resources.csv` or `assets/catalog-data.js` directly. You do not need to update every translation for a resource change: translated guides point to the shared catalog.
 
-Open an issue with the title: `Outdated: [Resource Name]` and describe what changed.
+## Prefer an issue first?
 
-## Pull Request Checklist
+Use [Add resource](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=add-resource.yml), [Outdated information](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=outdated-resource.yml) or [Translation](https://github.com/abbosaliboev/free-ai-bible/issues/new?template=translation.yml). English is useful for cross-language review; reports in other languages are welcome.
 
-- [ ] Resource is genuinely free (no hidden paywalls)
-- [ ] All table columns are filled
-- [ ] Link goes directly to signup/docs page
-- [ ] PR title follows the format: `Add: [Resource Name]`
+## Improve a starter
 
-## Code of Conduct
+Include your OS, Python version, exact setup steps and result. Keep dependencies in the template's requirements file. Never commit API keys, audio recordings, model weights or personal documents.
 
-Be respectful. This is a community resource built on good faith.
+## Translate
+
+Translate the short guide in `translations/`, retain working relative links, and link to the shared catalog instead of copying quotas that can go stale. Arabic uses an RTL wrapper; code blocks remain LTR. Human language review is welcome for every guide.
+
+## Recognition and conduct
+
+Merged contributors appear in [GitHub's contributor list](https://github.com/abbosaliboev/free-ai-bible/graphs/contributors). Maintainers should name contributors in meaningful release notes. Be respectful, discuss the work and explain disagreements. Do not submit promotional spam or fabricated tests.
+
+Directory contributions are under the MIT license. Listed projects retain their own licenses.

@@ -1,64 +1,30 @@
 name: Welcome Contributors
-
 on:
   pull_request_target:
     types: [opened]
-  issues:
-    types: [opened]
-
+permissions:
+  contents: read
+  issues: write
 jobs:
   welcome:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      issues: write
-
     steps:
-      - name: Welcome new PR
-        if: github.event_name == 'pull_request_target'
-        uses: actions/github-script@v7
+      # No checkout or execution of pull request code in this privileged event.
+      - uses: actions/github-script@v7
         with:
           script: |
-            const { data: prs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'all',
-              creator: context.payload.pull_request.user.login
-            });
-
-            if (prs.length === 1) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                body: `👋 **Welcome, and thank you for your first contribution to Free AI Bible!**
-
-Your PR helps keep this resource valuable for thousands of developers. Here's what happens next:
-
-1. A maintainer will review your submission within a few days
-2. We'll verify the resource is genuinely free (no hidden CC requirements)
-3. Once approved, it'll be live for the whole community
-
-While you wait — if you haven't already, a ⭐ [Star](https://github.com/abbosaliboev/free-ai-bible) helps other developers discover this list. 🙏
-
-Thanks again for giving back to the community!`
-              });
-            }
-
-      - name: Welcome new issue
-        if: github.event_name == 'issues'
-        uses: actions/github-script@v7
-        with:
-          script: |
+            const association = context.payload.pull_request.author_association;
+            if (!['FIRST_TIMER', 'FIRST_TIME_CONTRIBUTOR'].includes(association)) return;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              body: `👋 Thanks for opening an issue!
-
-We'll look into this shortly. In the meantime:
-- If you know of a resource that's outdated, feel free to open a PR with the fix
-- If you want to add a new resource, see [CONTRIBUTING.md](https://github.com/abbosaliboev/free-ai-bible/blob/main/CONTRIBUTING.md)
-
-If this repo has been useful to you, a ⭐ [Star](https://github.com/abbosaliboev/free-ai-bible) means a lot! 🙏`
+              issue_number: context.payload.pull_request.number,
+              body: [
+                'Welcome, and thank you for your first contribution! 👋',
+                '',
+                'For catalog changes, please include an official source, the review date, and whether you read documentation or tested the service.',
+                'Run `python3 scripts/build-directory.py` and `python3 scripts/check-repo.py` to validate generated views.',
+                '',
+                'Small corrections are valuable. A maintainer will review the change when available.'
+              ].join('\n')
             });

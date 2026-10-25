@@ -1,18 +1,15 @@
-# Free Streaming Chatbot — Groq + Llama 3.3 70B
+# Streaming chatbot — Groq
 
-Fully working streaming chatbot. Zero cost. 14,400 requests/day free.
-
-## Setup
+A small CLI chatbot with streaming responses and conversation history.
 
 ```bash
-pip install -r requirements.txt
-export GROQ_API_KEY=your_key_here   # get free key at console.groq.com
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+export GROQ_API_KEY=your_key_here
+# Optional: choose another model available to your account
+export GROQ_MODEL=openai/gpt-oss-20b
 python app.py
 ```
 
-## What You Get
-
-- Streaming responses (token by token, feels instant)
-- Full conversation history (remembers context)
-- Llama 3.3 70B — competitive with GPT-4o for most tasks
-- ~50 lines of code total
+Get a key at [Groq](https://console.groq.com). The default model is configurable because model availability changes. [Free limits](https://console.groq.com/docs/rate-limits) apply to both requests and tokens; this example is not a capacity guarantee. Prompts are sent to Groq. History grows during the session, so restart for a fresh context. Network/API errors currently stop the example.

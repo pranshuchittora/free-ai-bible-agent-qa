@@ -1,0 +1,17 @@
+name: Improve a translation
+description: Fix a guide or propose a language you can help maintain.
+title: 'Translation: '
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested wording or missing content
+      description: Link the relevant file and explain the improvement. Native-speaker review is welcome.
+    validations:
+      required: true

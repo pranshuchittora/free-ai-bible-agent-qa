@@ -1,12 +1,12 @@
 # Free Voice Assistant
 
 Full voice assistant pipeline: **speak → transcribe → LLM → speak back.**
-100% free. No paid APIs.
+Local speech recognition and speech output, with Groq free-tier text inference.
 
 | Component | Tool | Cost |
 |-----------|------|------|
 | Speech-to-Text | OpenAI Whisper (local) | $0 |
-| LLM | Groq Llama 3.3 70B | $0 (14,400 req/day) |
+| LLM | Groq configurable LLM | $0 within model-specific free limits |
 | Text-to-Speech | pyttsx3 (local) | $0 |
 
 ## Setup
@@ -28,3 +28,5 @@ python app.py
 - Whisper `base` model works well and is small. Swap for `medium` or `large` for better accuracy.
 - First run downloads the Whisper model (~150MB, one-time).
 - Speaks back using your OS's built-in TTS voices via pyttsx3.
+
+Default LLM: `openai/gpt-oss-20b`; override with `GROQ_MODEL`. Transcripts are sent to Groq. Audio is transcribed from memory and is not written to temporary WAV files. Free-tier availability and quotas can change. Hardware, microphone permissions and OS speech dependencies apply.

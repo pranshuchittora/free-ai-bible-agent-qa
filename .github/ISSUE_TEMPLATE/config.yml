@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Read the contribution guide
+    url: https://github.com/abbosaliboev/free-ai-bible/blob/main/CONTRIBUTING.md
+    about: Learn how catalog entries and translations are maintained.

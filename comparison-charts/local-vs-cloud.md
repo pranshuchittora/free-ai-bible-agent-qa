@@ -1,49 +1,18 @@
-# Local AI vs Cloud AI — Complete Tradeoff Guide
+# Local or cloud AI?
 
-## At a Glance
+| Factor | Local inference | Cloud API |
+|---|---|---|
+| Cost | Hardware, power, storage and maintenance | Free quotas or usage-based billing |
+| Data | Can stay on your device with local configuration | Sent to a provider; read its data policy |
+| Setup | Install runner and download compatible weights | Create account, configure key and select model |
+| Limits | Memory, speed, concurrency and model license | Requests, tokens, account, region and terms |
+| Offline | Possible after downloads | Usually requires connectivity |
+| Quality | Depends on model, quantization and task | Depends on provider, model and task |
 
-| Factor | Local AI | Cloud API |
-|--------|----------|-----------|
-| Cost | $0 forever | $0 with limits, then paid |
-| Privacy | 100% private | Data sent to servers |
-| Speed | Depends on hardware | Fast (ms latency) |
-| Setup | 5–30 minutes | 60 seconds |
-| Limits | None | Rate limits apply |
-| Model quality | Good (open models) | Excellent (frontier models) |
-| Offline use | ✅ Yes | ❌ No |
-| GPU required | Recommended | No |
+Choose local operation when offline access and control of data matter. Check telemetry, tools and integrations too: a local UI can still call cloud services.
 
-## When to Go Local
+Choose cloud APIs when you prefer managed infrastructure or lack compatible hardware. Measure latency and quality using your own workload.
 
-- You're handling sensitive data (medical, legal, financial)
-- You need unlimited inference with no rate limits
-- You're running batch processing jobs overnight
-- You want to fine-tune models on your own data
-- Your app needs to work offline
+A hybrid app can route tasks between both, but fallback must preserve user expectations about data handling. Do not silently send private local documents to a cloud API.
 
-**Best local stack:** Ollama + Open WebUI + Chroma (vector DB)
-
-## When to Use Cloud APIs
-
-- You're prototyping and want zero setup time
-- You need the best possible model quality
-- Your hardware is limited (no GPU)
-- You need multimodal capabilities
-- You're building a demo or MVP
-
-**Best free cloud stack:** Groq (LLM) + Gemini (vision) + Supabase pgvector (DB)
-
-## Hybrid Approach (Recommended for Production)
-
-```
-User Request
-    │
-    ├── Simple/fast task → Groq (cloud, free, fast)
-    │
-    ├── Sensitive data → Ollama (local, private)
-    │
-    └── Image/video → Gemini Flash (cloud, free multimodal)
-```
-
-Use the cloud for speed and convenience, fall back to local for privacy or when
-you hit rate limits. This hybrid approach costs $0 for most indie projects.
+[Local RAG starter](../templates/rag-pipeline-free/) · [API picker](which-llm-api.md)
